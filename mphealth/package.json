@@ -1,0 +1,22 @@
+{
+  "name": "package.json",
+  "version": "1.0.0",
+  "description": "\"Health app\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/asifrahman479/MP-Health"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/asifrahman479/MP-Health/issues"
+  },
+  "homepage": "https://github.com/asifrahman479/MP-Health#readme",
+  "dependencies": {
+    "create-react-app": "^4.0.0"
+  }
+}
