@@ -36,3 +36,51 @@
     transform: rotate(360deg);
   }
 } */
+.App{
+  background-color:#e35d5b;
+}
+header{
+  font-family: "Monserrat", sans-serif;
+  padding-bottom: 4%;
+}
+nav{
+  display:flex;
+  justify-content:space-around;
+  align-items: center;
+  min-height: 8vh;
+  background-color: white;
+  width: 130%;
+  position: fixed;
+  z-index: 10;
+  
+}
+.navlinks{
+  display:flex;
+  justify-content: space-around;
+  width:28%;
+  
+}
+.navlinks a{
+  text-decoration: none;
+  letter-spacing: 3px;
+  font-weight:bold;
+  font-size:14px;
+  color:black;
+  
+}
+.navlinks li{
+  list-style: none;
+  transition: .5s;
+}
+.navlinks li:hover{
+  background: whitesmoke;
+}
+.logo{
+  text-transform:uppercase;
+  letter-spacing: 5px;
+  font-size:20px;
+}
+.logo a{
+  text-decoration: none;
+  color:black;
+}
