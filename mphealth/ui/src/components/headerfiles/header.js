@@ -14,6 +14,7 @@ class Header extends Component {
            
             <li><a href="#">Appointments</a></li>
             <li><a href="#">Notifications</a></li>
+            <li><a href="#">Log in/Sign up</a></li>
             
         </ul>
         <div class="burger">

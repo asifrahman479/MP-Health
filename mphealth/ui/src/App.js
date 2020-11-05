@@ -2,6 +2,7 @@ import './App.css';
 import ReactCalender from './components/ReactCalender';
 import React, {Component} from 'react';
 import Header from './components/headerfiles/header';
+import{Inject,ScheduleComponent, Day,Week, WorkWeek, Month, Agenda, EventSettingsModel} from '@syncfusion/ej2-react-schedule';
 
 class App extends Component {
   render(){
@@ -11,7 +12,9 @@ class App extends Component {
     <div className="App">
       <Header />
       <center>
-      <ReactCalender />
+      <ScheduleComponent width = '100%' height = '700px' currentView = 'Week'>
+        <Inject services = {[Day,Week, WorkWeek, Month, Agenda]}/>
+      </ScheduleComponent>
       </center>
       
     </div>
