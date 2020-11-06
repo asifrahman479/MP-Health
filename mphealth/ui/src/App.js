@@ -12,7 +12,7 @@ class App extends Component {
     <div className="App">
       <Header />
       <center>
-      <ScheduleComponent width = '100%' height = '700px' currentView = 'Week'>
+      <ScheduleComponent width = '100%' height = '600px' currentView = 'Week'>
         <Inject services = {[Day,Week, WorkWeek, Month, Agenda]}/>
       </ScheduleComponent>
       </center>
