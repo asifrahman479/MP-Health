@@ -36,6 +36,17 @@ class DocAvailability(models.Model):
     EndTime = models.DateTimeField(blank = True)
     IsFree = models.BooleanField(default = True)
 
+    # generates 30 min time slots based on the start time and end time
+    def createSlots(start_time, end_time):
+        listOfSlots = [] 
+        t = start_time
+        while t < end_time:
+            a.append(t)
+            t = (datetime.datetime.combine(datetime.date.today(), t) +
+                datetime.timedelta(minutes=30)).time()  
+
+        return a
+
 
 
 class Appointment(models.Model):

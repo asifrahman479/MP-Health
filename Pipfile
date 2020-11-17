@@ -16,6 +16,7 @@ dj-database-url = "*"
 django-crispy-forms = "*"
 pillow = "*"
 django-environ = "*"
+psycopg2-binary = "*"
 
 [dev-packages]
 
