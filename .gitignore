@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 *.log
 *.pot
 *.pyc
@@ -6,6 +5,4 @@ __pycache__/
 local_settings.py
 db.sqlite3
 venv/
-=======
 .DS_Store
->>>>>>> 6f4789e64f57a36e5e3e545a0b6682f0bd332144
