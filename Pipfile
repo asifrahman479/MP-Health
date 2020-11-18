@@ -16,7 +16,11 @@ dj-database-url = "*"
 django-crispy-forms = "*"
 pillow = "*"
 django-environ = "*"
+<<<<<<< HEAD
 whitenoise = "*"
+=======
+psycopg2-binary = "*"
+>>>>>>> 6f4789e64f57a36e5e3e545a0b6682f0bd332144
 
 [dev-packages]
 
