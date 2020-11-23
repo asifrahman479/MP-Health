@@ -41,7 +41,7 @@
 }
 header{
   font-family: "Monserrat", sans-serif;
-  padding-bottom: 4%;
+  /* padding-bottom: 4%; */
 }
 nav{
   display:flex;
