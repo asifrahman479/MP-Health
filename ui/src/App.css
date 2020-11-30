@@ -36,8 +36,12 @@
     transform: rotate(360deg);
   }
 } */
+
+
 .App{
-  background-color:#e35d5b;
+  background-color:#E5E5E5;
+  padding: none;
+  border: none;
 }
 header{
   font-family: "Monserrat", sans-serif;

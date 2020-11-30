@@ -6,6 +6,7 @@ import{Inject,ScheduleComponent, Day,Week, WorkWeek, Month, Agenda, EventSetting
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import DoctorView from './components/DoctorView';
 import PatientView from './components/PatientView';
+import TempDoctor from './components/TempDoctor';
 
 class App extends Component {
   render(){
@@ -16,6 +17,7 @@ class App extends Component {
             <Route path='/' exact component={Home} />
             <Route path='/doctor' component={DoctorView} />
             <Route path='/patient' component={PatientView} />
+            <Route path='/temp' component={TempDoctor} />
           </Switch>
         </div>
 
