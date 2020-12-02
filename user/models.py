@@ -50,11 +50,16 @@ class DocAvailability(models.Model):
 
 
 class Appointment(models.Model):
-    PatientID = models.ForeignKey(Patient, on_delete=models.CASCADE)
-    DoctorID = models.ForeignKey(Doctor, on_delete=models.CASCADE)
+    # PatientID = models.ForeignKey(Patient, on_delete=models.CASCADE)
+    # DoctorID = models.ForeignKey(Doctor, on_delete=models.CASCADE)
+    Subject = models.CharField(max_length = 96, blank = True)
     StartTime = models.DateTimeField(blank = True)
     EndTime = models.DateTimeField(blank = True)
-    VirtualMeeting = models.URLField(blank = True)
+    IsAllDay = models.BooleanField(default = False)
+    IsReadonly = models.BooleanField(default = False)
+    RoomId = models.IntegerField(default = 1, blank = True)
+    ResourceId = models.IntegerField(default = 1, blank = True)
+    
 
 class Clinics(models.Model):
     ClinicName = models.CharField(max_length = 96, blank = True)
