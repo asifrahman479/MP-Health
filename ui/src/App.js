@@ -7,6 +7,8 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import DoctorView from './components/DoctorView';
 import PatientView from './components/PatientView';
 import TempDoctor from './components/TempDoctor';
+import { Link } from 'react-router-dom';
+
 
 class App extends Component {
   render(){
@@ -30,6 +32,11 @@ class App extends Component {
 const Home = () => (
   <div>
     <h1> Home page </h1>
+    <Link to="/temp">
+  <button renderAs="button">
+    <span>Doctor</span>
+  </button>
+</Link>
   </div>
 )
 

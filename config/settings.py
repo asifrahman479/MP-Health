@@ -65,6 +65,7 @@ DATABASES = {
         'PASSWORD': 'kaela123',
         'HOST': 'localhost',
         'PORT': '5432',
+   
     }
 }
 # Password validation
