@@ -1,9 +1,16 @@
 from django.db import models
 
 # Create your models here.
+class Clinic(models.Model):
+    ClinicName = models.CharField(max_length = 96, blank = True)
+
+    def get_doctors(self):
+        return Doctor.objects.filter(ClinicID = self)
+
+
 class Doctor(models.Model):
     DoctorName = models.CharField(max_length = 96, blank=True)
-    ClinicID = models.TextField(blank = True)
+    ClinicID = models.ForeignKey(Clinic, on_delete=models.CASCADE)
     Email = models.TextField(blank = True)
     Phone = models.CharField(max_length = 12, blank = True)
     JobTitle= models.TextField(blank = True)
@@ -35,34 +42,13 @@ class DocAvailability(models.Model):
     StartTime = models.DateTimeField(blank = True)
     EndTime = models.DateTimeField(blank = True)
     IsFree = models.BooleanField(default = True)
-
-    # generates 30 min time slots based on the start time and end time
-    def createSlots(start_time, end_time):
-        listOfSlots = [] 
-        t = start_time
-        while t < end_time:
-            a.append(t)
-            t = (datetime.datetime.combine(datetime.date.today(), t) +
-                datetime.timedelta(minutes=30)).time()  
-
-        return a
-
+    IsReadonly = False
 
 
 class Appointment(models.Model):
-    # PatientID = models.ForeignKey(Patient, on_delete=models.CASCADE)
-    # DoctorID = models.ForeignKey(Doctor, on_delete=models.CASCADE)
+    PatientID = models.ForeignKey(Patient, blank = True, null = True, on_delete=models.CASCADE)
+    DoctorID = models.ForeignKey(Doctor, blank = True, null = True, on_delete=models.CASCADE)
     Subject = models.CharField(max_length = 96, blank = True)
     StartTime = models.DateTimeField(blank = True)
     EndTime = models.DateTimeField(blank = True)
-    IsAllDay = models.BooleanField(default = False)
-    IsReadonly = models.BooleanField(default = False)
-    RoomId = models.IntegerField(default = 1, blank = True)
-    ResourceId = models.IntegerField(default = 1, blank = True)
-    
-
-class Clinics(models.Model):
-    ClinicName = models.CharField(max_length = 96, blank = True)
-
-    def get_doctors(self):
-        return Doctor.objects.filter(ClinicID = self)
+    IsReadonly = True
