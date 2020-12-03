@@ -1,6 +1,23 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-# Create your views here.
+from rest_framework import viewsets
+from . import models
+from . import serializers
 
-def doctor_homepage(request):
-    return render(request, 'user/doctor_homepage.html')
+class DoctorViewSet(viewsets.ModelViewSet):
+    queryset = models.Doctor.objects.all()
+    serializer_class = serializers.DoctorSerializer
+
+class AppointmentViewSet(viewsets.ModelViewSet):
+    queryset = models.Appointment.objects.all()
+    serializer_class = serializers.AppointmentSerializer
+
+class PatientViewSet(viewsets.ModelViewSet):
+    queryset = models.Patient.objects.all()
+    serializer_class = serializers.PatientSerializer
+
+class DocAvailabilityViewSet(viewsets.ModelViewSet):
+    queryset = models.DocAvailability.objects.all()
+    serializer_class = serializers.DocAvailabilitySerializer
+
+class ClinicViewSet(viewsets.ModelViewSet):
+    queryset = models.Clinic.objects.all()
+    serializer_class = serializers.ClinicSerializer

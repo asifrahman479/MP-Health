@@ -10,3 +10,18 @@ class AppointmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Appointment
         fields = '__all__'
+class PatientSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Patient
+        fields = '__all__'
+
+class DocAvailabiltySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DocAvailabilty
+        fields = '__all__'
+class ClinicSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Clinic
+        fields = '__all__'
+
+
