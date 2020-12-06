@@ -8,6 +8,7 @@ import DoctorView from './components/DoctorView';
 import PatientView from './components/PatientView';
 import TempDoctor from './components/TempDoctor';
 import { Link } from 'react-router-dom';
+import { Login } from "./components/Login/index";
 
 
 class App extends Component {
@@ -31,8 +32,9 @@ class App extends Component {
 
 const Home = () => (
   <div>
+    <Login/>
     <h1> Home page </h1>
-    <Link to="/temp">
+    <Link to="/doctor">
   <button renderAs="button">
     <span>Doctor</span>
   </button>

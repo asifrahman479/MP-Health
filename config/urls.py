@@ -24,5 +24,7 @@ urlpatterns = [
     path('',TemplateView.as_view(template_name='index.html')),
     # path('',include(user.urls)),
     path('api/',include(router.urls)),
+    path('doctor/', TemplateView.as_view(template_name='index.html')),
+    path('patient/', TemplateView.as_view(template_name='index.html')),
     
 ]

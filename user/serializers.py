@@ -15,9 +15,9 @@ class PatientSerializer(serializers.ModelSerializer):
         model = Patient
         fields = '__all__'
 
-class DocAvailabiltySerializer(serializers.ModelSerializer):
+class DocAvailabilitySerializer(serializers.ModelSerializer):
     class Meta:
-        model = DocAvailabilty
+        model = DocAvailability
         fields = '__all__'
 class ClinicSerializer(serializers.ModelSerializer):
     class Meta:

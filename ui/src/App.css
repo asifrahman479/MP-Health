@@ -37,9 +37,10 @@
   }
 } */
 
+@import url("https://fonts.googleapis.com/css?family=Montserrat");
 
 .App{
-  background-color:#E5E5E5;
+  background-color: white;
   padding: none;
   border: none;
 }
@@ -87,4 +88,21 @@ nav{
 .logo a{
   text-decoration: none;
   color:black;
+}
+.btn{
+  font-size: 21px;
+  padding: 5px 20px;
+  border: 0;
+  background-color: #3498db;
+  color: #fff;
+  border-radius:3px;
+  transition: all 250ms ease-in-out;
+  cursor: pointer;
+
+}
+.btn:hover{
+  background-color: #2386c8;
+}
+.btn:focus{
+  outline: none;
 }
