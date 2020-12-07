@@ -13,6 +13,7 @@ export default class DoctorView extends SampleBase {
     super(...arguments);
     this.dataManger = new DataManager({
       url: "http://127.0.0.1:8000/api/Appointment/?format=json",
+      crudUrl: "http://127.0.0.1:8000/api/Appointment/",
         // "https://ej2services.syncfusion.com/production/web-services/api/Schedule",
       crudUrl: "http://127.0.0.1:8000/api/Appointment/",
       adaptor: new WebApiAdaptor(),
