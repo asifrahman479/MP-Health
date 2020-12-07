@@ -27,7 +27,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'widget_tweaks',
-    'user'
+    'user',
+    'knox',
+    'authen'
 ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -39,12 +41,16 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware'
 ]
-APPEND_SLASH=False
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'knox.auth.TokenAuthentication',
+    ),
+}
 ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'ui/build')],
+        'DIRS': [os.path.join(BASE_DIR, 'ui/build/mp-health')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -67,7 +73,7 @@ DATABASES = {
         'PASSWORD': 'kaela123',
         'HOST': 'localhost',
         'PORT': '5432',
-   
+
     }
 }
 # Password validation

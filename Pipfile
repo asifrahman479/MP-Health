@@ -18,6 +18,9 @@ pillow = "*"
 django-environ = "*"
 whitenoise = "*"
 psycopg2-binary = "*"
+django-rest-knox = "*"
+django-widget-tweaks = "*"
+djangorestframework-bulk = "*"
 
 [dev-packages]
 
