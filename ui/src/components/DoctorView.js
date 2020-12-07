@@ -1,4 +1,3 @@
-
 import React, {Component} from 'react';
 import Header from './headerfiles/header';
 import{Inject,ScheduleComponent, Day,Week, WorkWeek, Month, Agenda, DragAndDrop} from '@syncfusion/ej2-react-schedule';
@@ -15,10 +14,21 @@ export default class DoctorView extends SampleBase {
     this.dataManger = new DataManager({
       url: "http://127.0.0.1:8000/api/Appointment/?format=json",
         // "https://ej2services.syncfusion.com/production/web-services/api/Schedule",
+      crudUrl: "http://127.0.0.1:8000/api/Appointment/",
       adaptor: new WebApiAdaptor(),
       crossDomain: true
     });
+
+    this.state = {
+      Subject: " ",
+      eventType: " ",
+      sTime: " ",
+      eTime: " ",
+      Description: " "
+    }
   }
+
+
   onPopupOpen(args) {
     if (args.type === 'QuickInfo') {
       // let statusElement = args.element.querySelector("#EventType");
@@ -42,6 +52,7 @@ export default class DoctorView extends SampleBase {
                 className="e-field e-input"
                 type="text"
                 name="Subject"
+                value={Subject}
                 style={{ width: "100%" }}
               />
             </td>
@@ -98,6 +109,7 @@ export default class DoctorView extends SampleBase {
                   height: "60px !important",
                   resize: "vertical"
                 }}
+                value={{Description}}
               />
             </td>
           </tr>
@@ -124,7 +136,7 @@ export default class DoctorView extends SampleBase {
           </div>
         
           <div className="calender">
-            <ScheduleComponent  editorTemplate={this.editorTemplate.bind(this)} popupOpen={this.onPopupOpen.bind(this)} style={{float: 'right', backgroundColor: 'E5E5E5', border: 'none', paddingTop: '5%' }} width = '80%' height = '100%' currentView = 'Week' eventSettings={{ dataSource: this.dataManger }}>
+            <ScheduleComponent editorTemplate={this.editorTemplate.bind(this)} popupOpen={this.onPopupOpen.bind(this)} style={{float: 'right', backgroundColor: 'E5E5E5', border: 'none', paddingTop: '5%' }} width = '80%' height = '100%' currentView = 'Week' eventSettings={{ dataSource: this.dataManger }}>
                 <Inject services = {[Day,Week, WorkWeek, Month, Agenda, DragAndDrop]}/>
               </ScheduleComponent>
           </div>
@@ -132,4 +144,3 @@ export default class DoctorView extends SampleBase {
     );
   }
 }
-
