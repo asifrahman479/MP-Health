@@ -52,3 +52,5 @@ class Appointment(models.Model):
     StartTime = models.DateTimeField(blank = True)
     EndTime = models.DateTimeField(blank = True)
     IsReadonly = True
+    IsBlock = models.BooleanField(default = False)
+    
