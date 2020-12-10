@@ -72,7 +72,7 @@ export default class DoctorView extends SampleBase {
                 className="e-field e-input"
                 type="text"
                 name="Subject"
-                value={Subject}
+              //  value={Subject}
                 style={{ width: "100%" }}
               />
             </td>
@@ -129,7 +129,7 @@ export default class DoctorView extends SampleBase {
                   height: "60px !important",
                   resize: "vertical"
                 }}
-                value={{Description}}
+//                value={{Description}}
               />
             </td>
           </tr>

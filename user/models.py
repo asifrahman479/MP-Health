@@ -10,7 +10,7 @@ class Clinic(models.Model):
 
 class Doctor(models.Model):
     DoctorName = models.CharField(max_length = 96, blank=True)
-    ClinicID = models.ForeignKey(Clinic, on_delete=models.CASCADE)
+    ClinicID = models.ForeignKey(Clinic, related_name="clinic", on_delete=models.CASCADE)
     Email = models.TextField(blank = True)
     Phone = models.CharField(max_length = 12, blank = True)
     JobTitle= models.TextField(blank = True)
