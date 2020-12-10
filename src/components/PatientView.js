@@ -15,8 +15,8 @@ class PatientView extends Component {
   constructor() {
     super(...arguments);
     this.dataManger = new DataManager({
-      url: "http://127.0.0.1:8000/api/DocAvailability",
-      crudUrl: "http://127.0.0.1:8000/admin/user/appointment/add/",
+      url: "https://mphealth.herokuapp.com/api/DocAvailability",
+      crudUrl: "https://mphealth.herokuapp.com/admin/user/appointment/add/",
         // "https://ej2services.syncfusion.com/production/web-services/api/Schedule",
       adaptor: new WebApiAdaptor(),
       crossDomain: true,
