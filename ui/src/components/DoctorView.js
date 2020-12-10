@@ -12,7 +12,7 @@ export default class DoctorView extends SampleBase {
   constructor() {
     super(...arguments);
     this.dataManger = new DataManager({
-      url: "http://127.0.0.1:8000/api/Appointment/?format=json",
+      url: "http://127.0.0.1:8000/api/Appointment/",
       crudUrl: "http://127.0.0.1:8000/api/Appointment/",
         // "https://ej2services.syncfusion.com/production/web-services/api/Schedule",
       crudUrl: "http://127.0.0.1:8000/api/Appointment/",
@@ -29,6 +29,24 @@ export default class DoctorView extends SampleBase {
     }
   }
 
+  posting(){
+    let data = {
+      id: 5,
+      Subject: 'Erics Appointment',
+      StartTime: new Date(2018, 1, 15, 10, 0),
+      EndTime: new Date(2018, 1, 15, 11, 30),
+      IsBlock: false,
+      PatientID: 1,
+      DoctorID: 1
+  };
+
+    fetch("http://127.0.0.1:8000/api/Appointment/", {
+      method: "POST", 
+      body: JSON.stringify(data)
+    }).then(res => {
+      console.log("Request complete! response:", res);
+    });
+}
 
   onPopupOpen(args) {
     if (args.type === 'QuickInfo') {
@@ -37,7 +55,8 @@ export default class DoctorView extends SampleBase {
       args.cancel = true;
       // alert('You can use your customized popup here for quick info popup.');
     }
-  }
+  } 
+  
   editorTemplate(props) {
     return props !== undefined ? (
       <table
@@ -46,7 +65,7 @@ export default class DoctorView extends SampleBase {
       >
         <tbody>
           <tr>
-            <td className="e-textlabel">Subject</td>
+            <td className="e-textlabel">Name</td>
             <td colSpan={4}>
               <input
                 id="Summary"
@@ -59,15 +78,15 @@ export default class DoctorView extends SampleBase {
             </td>
           </tr>
           <tr>
-            <td className="e-textlabel">Status</td>
+            <td className="e-textlabel">Type of Visit</td>
             <td colSpan={4}>
               <DropDownListComponent
                 id="EventType"
-                placeholder="Choose status"
+                placeholder="Choose Type"
                 data-name="EventType"
                 className="e-field"
                 style={{ width: "100%" }}
-                dataSource={["New", "Requested", "Confirmed"]}
+                dataSource={["Sick", "Emergency", "Check-Up"]}
                 value={props.EventType || null}
               />
             </td>
@@ -97,7 +116,7 @@ export default class DoctorView extends SampleBase {
             </td>
           </tr>
           <tr>
-            <td className="e-textlabel">Reason</td>
+            <td className="e-textlabel">Reason for visit</td>
             <td colSpan={4}>
               <textarea
                 id="Description"
@@ -120,6 +139,18 @@ export default class DoctorView extends SampleBase {
       <div />
     );
   }
+  onEventRendered(args) {
+    let categoryColor = args.data.CategoryColor;
+    if (!args.element || !categoryColor) {
+        return;
+    }
+    if (this.scheduleObj.currentView === 'Agenda') {
+        args.element.firstChild.style.borderLeftColor = categoryColor;
+    }
+    else {
+        args.element.style.backgroundColor = categoryColor;
+    }
+}
   render(){
     return (        
       <div style={{backgroundColor: '#E5E5E5'}}>
@@ -135,9 +166,11 @@ export default class DoctorView extends SampleBase {
           })
           }
           </div>
-        
+          {this.posting()}
           <div className="calender">
-            <ScheduleComponent editorTemplate={this.editorTemplate.bind(this)} popupOpen={this.onPopupOpen.bind(this)} style={{float: 'right', backgroundColor: 'E5E5E5', border: 'none', paddingTop: '5%' }} width = '80%' height = '100%' currentView = 'Week' eventSettings={{ dataSource: this.dataManger }}>
+
+            <ScheduleComponent  editorTemplate={this.editorTemplate.bind(this)} popupOpen={this.onPopupOpen.bind(this)} style={{float: 'right', backgroundColor: 'E5E5E5', border: 'none', paddingTop: '5%' }} width = '80%' height = '100%' currentView = 'Week' eventSettings={{ dataSource: this.dataManger }} eventRendered={this.onEventRendered.bind(this)}>
+
                 <Inject services = {[Day,Week, WorkWeek, Month, Agenda, DragAndDrop]}/>
               </ScheduleComponent>
           </div>

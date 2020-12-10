@@ -38,19 +38,31 @@ class Patient(models.Model):
         return Appointment.object.filter(PatientID = self)
 
 class DocAvailability(models.Model):
-    DoctorID = models.ForeignKey(Doctor, on_delete=models.CASCADE)
-    StartTime = models.DateTimeField(blank = True)
-    EndTime = models.DateTimeField(blank = True)
-    IsFree = models.BooleanField(default = True)
-    IsReadonly = False
-
-
-class Appointment(models.Model):
-    PatientID = models.ForeignKey(Patient, blank = True, null = True, on_delete=models.CASCADE)
-    DoctorID = models.ForeignKey(Doctor, blank = True, null = True, on_delete=models.CASCADE)
+    # DoctorID = models.ForeignKey(Doctor, on_delete=models.CASCADE)
     Subject = models.CharField(max_length = 96, blank = True)
     StartTime = models.DateTimeField(blank = True)
     EndTime = models.DateTimeField(blank = True)
-    IsReadonly = True
+    IsBlock = models.BooleanField(default = True)
+    
+    @classmethod
+    def create(cls, Subject, StartTime, EndTime, IsBlock):
+        appt = cls( Subject= Subject, StartTime = StartTime, EndTime=EndTime, IsBlock = IsBlock)
+        return appt
+
+
+colors = {
+    ("#1aaa55", 'Emergency'),
+    ("#ea7a57", 'Sick'),
+}
+
+class Appointment(models.Model):
+    # PatientID = models.ForeignKey(Patient, blank = True, null = True, on_delete=models.CASCADE)
+    # DoctorID = models.ForeignKey(Doctor, blank = True, null = True, on_delete=models.CASCADE)
+    Subject = models.CharField(max_length = 96, blank = True)
+    StartTime = models.DateTimeField(blank = True)
+    EndTime = models.DateTimeField(blank = True)
+    CategoryColor = models.CharField(max_length=10, choices = colors, blank = True) 
     IsBlock = models.BooleanField(default = False)
+
+    
     
