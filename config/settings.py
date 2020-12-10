@@ -8,6 +8,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 import os
 import mimetypes
+import dj_database_url
 mimetypes.add_type('text/css', '.css', True)
 mimetypes.add_type('application/js', '.js', True)
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -75,11 +76,14 @@ DATABASES = {
         'NAME': 'mphealthdb',
         'USER': 'admin',
         'PASSWORD': 'kaela123',
-        'HOST': os.getenv('DATABASE_URL'),
+        'HOST': 'localhost',
         'PORT': '5432',
 
     }
 }
+
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 AUTH_PASSWORD_VALIDATORS = [
