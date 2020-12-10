@@ -33,7 +33,6 @@ class App extends Component {
 const Home = () => (
   <div>
     <Login/>
-    <h1> Home page </h1>
     <Link to="/doctor">
   <button renderAs="button">
     <span>Doctor</span>

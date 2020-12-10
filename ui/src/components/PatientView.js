@@ -9,13 +9,14 @@ import { SampleBase } from "./sample-base";
 import { DataManager, WebApiAdaptor } from "@syncfusion/ej2-data";
 import { DateTimePickerComponent } from "@syncfusion/ej2-react-calendars";
 import { DropDownListComponent } from "@syncfusion/ej2-react-dropdowns";
+import { withRouter } from "react-router-dom";
 
-export default class PatientView extends Component {
+class PatientView extends Component {
   constructor() {
     super(...arguments);
     this.dataManger = new DataManager({
-      url: "http://127.0.0.1:8000/api/Appointment/?format=json",
-      crudUrl: "http://127.0.0.1:8000/api/Appointment/",
+      url: "http://127.0.0.1:8000/api/DocAvailability",
+      crudUrl: "http://127.0.0.1:8000/admin/user/appointment/add/",
         // "https://ej2services.syncfusion.com/production/web-services/api/Schedule",
       adaptor: new WebApiAdaptor(),
       crossDomain: true,
@@ -27,7 +28,9 @@ export default class PatientView extends Component {
       // let statusElement = args.element.querySelector("#EventType");
       // statusElement.setAttribute("name", "EventType");
       args.cancel = true;
-      // alert('You can use your customized popup here for quick info popup.');
+      this.props.history.replace("/create/create_appointment");
+      window.location.reload();
+     
     }
   }
   editorTemplate(props) {
@@ -38,7 +41,7 @@ export default class PatientView extends Component {
       >
         <tbody>
           <tr>
-            <td className="e-textlabel">Subject</td>
+            <td className="e-textlabel">Name</td>
             <td colSpan={4}>
               <input
                 id="Summary"
@@ -50,15 +53,15 @@ export default class PatientView extends Component {
             </td>
           </tr>
           <tr>
-            <td className="e-textlabel">Status</td>
+            <td className="e-textlabel">Type of Visit</td>
             <td colSpan={4}>
               <DropDownListComponent
                 id="EventType"
-                placeholder="Choose status"
+                placeholder="Choose Type"
                 data-name="EventType"
                 className="e-field"
                 style={{ width: "100%" }}
-                dataSource={["New", "Requested", "Confirmed"]}
+                dataSource={["Sick", "Emergency", "Check-Up"]}
                 value={props.EventType || null}
               />
             </td>
@@ -88,7 +91,7 @@ export default class PatientView extends Component {
             </td>
           </tr>
           <tr>
-            <td className="e-textlabel">Reason</td>
+            <td className="e-textlabel">Reason for visit</td>
             <td colSpan={4}>
               <textarea
                 id="Description"
@@ -139,3 +142,4 @@ export default class PatientView extends Component {
 }
 
 
+export default withRouter(PatientView);
