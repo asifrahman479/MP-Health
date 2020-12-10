@@ -75,7 +75,7 @@ DATABASES = {
         'NAME': 'mphealthdb',
         'USER': 'admin',
         'PASSWORD': 'kaela123',
-        'HOST': 'localhost',
+        'HOST': os.getenv('DATABASE_URL'),
         'PORT': '5432',
 
     }
