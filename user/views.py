@@ -7,6 +7,7 @@ from django.views.generic import CreateView
 from .models import Appointment
 from django.shortcuts import redirect
 from django.urls import reverse
+from django.views import View
 
 class DoctorViewSet(viewsets.ModelViewSet):
     queryset = models.Doctor.objects.all()
