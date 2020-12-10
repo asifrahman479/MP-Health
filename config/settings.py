@@ -50,7 +50,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'ui/build/mp-health')],
+        'DIRS': [os.path.join(BASE_DIR, 'build')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -105,6 +105,6 @@ CORS_ORIGIN_WHITELIST = ['https://localhost:3000',]
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 STATIC_URL = '/static/'
 STATICFILES_DIRS=[
-    os.path.join(BASE_DIR, 'ui/build/static'),
-    os.path.join(BASE_DIR, 'ui/build/images'),
+    os.path.join(BASE_DIR, 'build/static'),
+    os.path.join(BASE_DIR, 'build/images'),
    ]
