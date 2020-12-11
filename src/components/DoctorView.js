@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import Header from './headerfiles/header';
+import React from 'react';
+// import Header from './headerfiles/header';
 import{Inject,ScheduleComponent, Day,Week, WorkWeek, Month, Agenda, DragAndDrop} from '@syncfusion/ej2-react-schedule';
 import {DoctorData} from "./SidebarData.js";
 import {Link } from "react-router-dom";
@@ -7,7 +7,6 @@ import { SampleBase } from "./sample-base";
 import { DataManager, WebApiAdaptor } from "@syncfusion/ej2-data";
 import { DateTimePickerComponent } from "@syncfusion/ej2-react-calendars";
 import { DropDownListComponent } from "@syncfusion/ej2-react-dropdowns";
-import axios from "axios";
 
 
 export default class DoctorView extends SampleBase {
@@ -17,7 +16,6 @@ export default class DoctorView extends SampleBase {
       url: "http://mphealth.herokuapp.com/api/Appointment/",
       crudUrl: "http://mphealth.herokuapp.com/api/Appointment/",
         // "https://ej2services.syncfusion.com/production/web-services/api/Schedule",
-      crudUrl: "http://mphealth.herokuapp.com/api/Appointment/",
       adaptor: new WebApiAdaptor(),
       crossDomain: true
     });
@@ -27,24 +25,6 @@ export default class DoctorView extends SampleBase {
     }
   }
 
-  posting(){
-    let data = {
-      id: 5,
-      Subject: 'Erics Appointment',
-      StartTime: new Date(2018, 1, 15, 10, 0),
-      EndTime: new Date(2018, 1, 15, 11, 30),
-      IsBlock: false,
-      PatientID: 1,
-      DoctorID: 1
-  };
-
-    fetch("http://127.0.0.1:8000/api/Appointment/", {
-      method: "POST", 
-      body: JSON.stringify(data)
-    }).then(res => {
-      console.log("Request complete! response:", res);
-    });
-}
 
   onPopupOpen(args) {
     if (args.type === 'QuickInfo') {
@@ -167,21 +147,17 @@ export default class DoctorView extends SampleBase {
           })
           }
 
-             
             {this.state.appointmentsList.map(item => (
                (
                 <li className={item.cName}>
                       <h3>- {item.Subject}</h3>
                 </li>
               )
-              
             ))}
 
-          
           </div>
-          {this.posting()}
           <div className="calender">
-            <ScheduleComponent  editorTemplate={this.editorTemplate.bind(this)} popupOpen={this.onPopupOpen.bind(this)} style={{float: 'right', backgroundColor: 'E5E5E5', border: 'none', paddingTop: '5%' }} width = '80%' height = '100%' currentView = 'Week' eventSettings={{ dataSource: this.dataManger }} eventRendered={this.onEventRendered.bind(this)}>
+            <ScheduleComponent  editorTemplate={this.editorTemplate.bind(this)} popupOpen={this.onPopupOpen.bind(this)} style={{float: 'right', backgroundColor: 'E5E5E5', border: 'none', paddingTop: '5%' }} width = '81%' height = '100%' currentView = 'Week' eventSettings={{ dataSource: this.dataManger }}>
                 <Inject services = {[Day,Week, WorkWeek, Month, Agenda, DragAndDrop]}/>
               </ScheduleComponent>
           </div>

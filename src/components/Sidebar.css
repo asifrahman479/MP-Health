@@ -14,9 +14,10 @@
 }
 .calender {
   background-color: #e5e5e5;
+  /* border: 1px solid black; */
 }
 .sidenav a {
-  padding: 6px 8px 6px 16px;
+  padding: 6px 8px 40px 16px;
   text-decoration: none;
   font-size: 2vw;
   color: #818181;
@@ -36,4 +37,12 @@ h3 {
   font-size: 2vw;
   color: #818181;
   display: block;
+}
+
+.e-content-wrap {
+  background-color: #e5e5e5;
+}
+
+.e-time-cells-wrap {
+  background-color: #e5e5e5;
 }
