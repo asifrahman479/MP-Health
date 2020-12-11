@@ -16,7 +16,7 @@
       name="description"
       content="Web site created using create-react-app"
     />
-        <title>Appointment Page</title>
+        <title>Set Availability Page</title>
     </head>
     
     {% block content %}
@@ -52,8 +52,7 @@
     }
     </style>
     <center>
-    <h3>Create a new Appointment</h3>
-    <b><i> Make your appointment only 30 minutes</i></b>
+    <h3>Block off time</h3>
     </center>
     <form method ="POST" novalidate> <!-- HTTP POST sends data to server-->
     {% csrf_token %}
@@ -71,7 +70,7 @@
 
   
     <div class="form-group">
-      <h5> Name:</h5>
+      <h5> Reason for being unavailable:</h5>
     
       {% if form.is_bound %}
         {% if form.Subject.errors %}
@@ -94,32 +93,8 @@
         <small class="form-text text-muted">Hello</small>
       {% endif %}
     </div>
-      <div class="form-group">
-      <h5> Email:</h5>
-    
-      {% if form.is_bound %}
-        {% if form.Location.errors %}
-        
-          {% render_field form.Location class="form-control is-invalid"%}
-          
-          {% for error in form.Location.errors %}
-            <div class="invalid-feedback">
-              {{ error }}
-            </div>
-          {% endfor %}
-        {% else %}
-          {% render_field form.Location class="form-control is-valid" %}
-        {% endif %}
-      {% else %}
-        {% render_field form.Location class="form-control"%}
-      {% endif %}
-
-      {% if form.Location.help_text %}
-        <small class="form-text text-muted">Hello</small>
-      {% endif %}
-    </div>
-        <div class="form-group">
-      <h5> Appointment Start Date and Time:</h5>
+      
+      <h5> Unavailable Start Date and Time:</h5>
       <i> (yyyy-mm-dd hh:mm)</i>
 
       {% if form.is_bound %}
@@ -140,9 +115,8 @@
       {% if form.StartTime.help_text %}
         <small class="form-text text-muted">{{ form.StartTime.help_text }}</small>
       {% endif %}
-    </div>
-        <div class="form-group">
-      <h5> Appointment End Date and Time:</h5>
+       
+      <h5> Unavailable End Date and Time:</h5>
        <i> (yyyy-mm-dd hh:mm)</i>
 
       {% if form.is_bound %}
@@ -163,33 +137,33 @@
       {% if form.EndTime.help_text %}
         <small class="form-text text-muted">{{ form.EndTime.help_text }}</small>
       {% endif %}
-    </div>
-    <div class="form-group">
-      <h5> Type of Appointment:</h5>
+   
+      <h5> Check to confirm blockage:</h5>
 
       {% if form.is_bound %}
-        {% if form.CategoryColor.errors %}
-          {% render_field form.CategoryColor class="form-control is-invalid"  %}
-          {% for error in form.CategoryColor.errors %}
+        {% if form.IsBlock.errors %}
+          {% render_field form.IsBlock class="form-control is-invalid"  %}
+          {% for error in form.IsBlock.errors %}
             <div class="invalid-feedback">
               {{ error }}
             </div>
           {% endfor %}
         {% else %}
-          {% render_field form.CategoryColor class="form-control is-valid" %}
+          {% render_field form.IsBlock class="form-control is-valid" %}
         {% endif %}
       {% else %}
-        {% render_field form.CategoryColor class="form-control"%}
+        {% render_field form.IsBlock class="form-control"%}
       {% endif %}
 
-      {% if form.CategoryColor.help_text %}
-        <small class="form-text text-muted">{{ form.CategoryColor.help_text }}</small>
+      {% if form.IsBlock.help_text %}
+        <small class="form-text text-muted">{{ form.IsBlock.help_text }}</small>
       {% endif %}
-    </div>
+    
  
     <center>
-    
-    <button type="submit" class = "btn btn-danger"> Create Appointment</button>
+   <br/>
+   <br/>
+    <button type="submit" class = "btn btn-danger"> Create Unavailability</button>
     <br/>
 </center>
 </form>

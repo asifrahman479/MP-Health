@@ -28,7 +28,7 @@ class PatientView extends Component {
       // let statusElement = args.element.querySelector("#EventType");
       // statusElement.setAttribute("name", "EventType");
       args.cancel = true;
-      this.props.history.replace("/create/create_appointment");
+      window.open("/create/create_appointment");
       window.location.reload();
      
     }

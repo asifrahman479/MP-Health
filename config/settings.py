@@ -39,7 +39,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware'
 ]
-APPEND_SLASH=False
+
 ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {

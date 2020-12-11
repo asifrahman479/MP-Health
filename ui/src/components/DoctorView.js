@@ -29,33 +29,15 @@ export default class DoctorView extends SampleBase {
     }
   }
 
-  posting(){
-    let data = {
-      id: 5,
-      Subject: 'Erics Appointment',
-      StartTime: new Date(2018, 1, 15, 10, 0),
-      EndTime: new Date(2018, 1, 15, 11, 30),
-      IsBlock: false,
-      PatientID: 1,
-      DoctorID: 1
-  };
-
-    fetch("http://127.0.0.1:8000/api/Appointment/", {
-      method: "POST", 
-      body: JSON.stringify(data)
-    }).then(res => {
-      console.log("Request complete! response:", res);
-    });
-}
-
-  onPopupOpen(args) {
-    if (args.type === 'QuickInfo') {
-      // let statusElement = args.element.querySelector("#EventType");
-      // statusElement.setAttribute("name", "EventType");
-      args.cancel = true;
-      // alert('You can use your customized popup here for quick info popup.');
-    }
-  } 
+ 
+  // onPopupOpen(args) {
+  //   if (args.type === 'QuickInfo') {
+  //     // let statusElement = args.element.querySelector("#EventType");
+  //     // statusElement.setAttribute("name", "EventType");
+  //     args.cancel = true;
+  //     // alert('You can use your customized popup here for quick info popup.');
+  //   }
+  // } 
   
   editorTemplate(props) {
     return props !== undefined ? (
@@ -72,7 +54,7 @@ export default class DoctorView extends SampleBase {
                 className="e-field e-input"
                 type="text"
                 name="Subject"
-                value={Subject}
+                // value={Subject}
                 style={{ width: "100%" }}
               />
             </td>
@@ -129,7 +111,7 @@ export default class DoctorView extends SampleBase {
                   height: "60px !important",
                   resize: "vertical"
                 }}
-                value={{Description}}
+                // value={{Description}}
               />
             </td>
           </tr>
@@ -140,16 +122,9 @@ export default class DoctorView extends SampleBase {
     );
   }
   onEventRendered(args) {
-    let categoryColor = args.data.CategoryColor;
-    if (!args.element || !categoryColor) {
-        return;
-    }
-    if (this.scheduleObj.currentView === 'Agenda') {
-        args.element.firstChild.style.borderLeftColor = categoryColor;
-    }
-    else {
-        args.element.style.backgroundColor = categoryColor;
-    }
+    var categoryColor = args.data.CategoryColor;
+    args.element.style.backgroundColor = categoryColor;
+    
 }
   render(){
     return (        
@@ -166,12 +141,11 @@ export default class DoctorView extends SampleBase {
           })
           }
           </div>
-          {this.posting()}
           <div className="calender">
 
-            <ScheduleComponent  editorTemplate={this.editorTemplate.bind(this)} popupOpen={this.onPopupOpen.bind(this)} style={{float: 'right', backgroundColor: 'E5E5E5', border: 'none', paddingTop: '5%' }} width = '80%' height = '100%' currentView = 'Week' eventSettings={{ dataSource: this.dataManger }} eventRendered={this.onEventRendered.bind(this)}>
+            <ScheduleComponent  ref = {schedule => this.scheduleObj = schedule} editorTemplate={this.editorTemplate.bind(this)} style={{float: 'right', backgroundColor: 'E5E5E5', border: 'none', paddingTop: '5%' }} width = '80%' height = '100%' currentView = 'Week' eventSettings={{ dataSource: this.dataManger }} eventRendered={this.onEventRendered.bind(this)}>
 
-                <Inject services = {[Day,Week, WorkWeek, Month, Agenda, DragAndDrop]}/>
+                <Inject services = {[Day,Week, WorkWeek, Month, Agenda]}/>
               </ScheduleComponent>
           </div>
       </div>
