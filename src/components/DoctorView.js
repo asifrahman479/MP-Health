@@ -118,7 +118,8 @@ export default class DoctorView extends SampleBase {
 
   async componentDidMount() {
     try {
-      const res = await fetch('http://mphealth.herokuapp.com/api/Appointment'); // fetching the data from api, before the page loaded
+      // fetching the data from api, before the page loaded
+      const res = await fetch('http://mphealth.herokuapp.com/api/Appointment'); 
         const appointmentsList = await res.json();
         this.setState({
           appointmentsList
