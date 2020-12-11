@@ -1,5 +1,5 @@
 import React from 'react';
-// import Header from './headerfiles/header';
+import Header from './headerfiles/header';
 import{Inject,ScheduleComponent, Day,Week, WorkWeek, Month, Agenda, DragAndDrop} from '@syncfusion/ej2-react-schedule';
 import {DoctorData} from "./SidebarData.js";
 import {Link } from "react-router-dom";
@@ -139,10 +139,16 @@ export default class DoctorView extends SampleBase {
       
   }
 
+  hello() {
+    return (
+      <h3>Appointments</h3>
+    )
+  }
+
   render(){
     return (        
-      <div style={{backgroundColor: '#E5E5E5'}}>
-        {/* <Header /> */}
+      <div style={{backgroundColor: '#edf1f4'}}>
+        <Header />
         <div className="sidenav">
           {DoctorData.map((item, index) => {
             return (
@@ -154,12 +160,23 @@ export default class DoctorView extends SampleBase {
               )
           })
           }
+
+            {this.state.appointmentsList.map(item => (
+               (
+                <li className={item.cName}>
+                      <h3 id="items">- {item.Subject}</h3>
+                </li>
+              )
+            ))}
+
+          </div>
+          <div className="hello">
+            <h1>Appointments</h1>
           </div>
           <div className="calender">
-
-            <ScheduleComponent  ref = {schedule => this.scheduleObj = schedule} editorTemplate={this.editorTemplate.bind(this)} style={{float: 'right', backgroundColor: 'E5E5E5', border: 'none', paddingTop: '5%' }} width = '80%' height = '100%' currentView = 'Week' eventSettings={{ dataSource: this.dataManger }} eventRendered={this.onEventRendered.bind(this)}>
-
-                <Inject services = {[Day,Week, WorkWeek, Month, Agenda]}/>
+          
+            <ScheduleComponent editorTemplate={this.editorTemplate.bind(this)} popupOpen={this.onPopupOpen.bind(this)} style={{float: 'right', backgroundColor: 'E5E5E5', border: 'none', paddingTop: '1%' }} width = '80%' height = '100%' currentView = 'Week' eventSettings={{ dataSource: this.dataManger }}>
+                <Inject services = {[Day,Week, WorkWeek, Month, Agenda, DragAndDrop]}/>
               </ScheduleComponent>
           </div>
       </div>

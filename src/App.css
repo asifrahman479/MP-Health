@@ -40,7 +40,7 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
 
 .App{
-  background-color: white;
+  background-color: #edf1f4;
   padding: none;
   border: none;
 }
@@ -53,10 +53,12 @@ nav{
   justify-content:space-around;
   align-items: center;
   min-height: 8vh;
-  background-color: white;
+  background-color: #edf1f4;
   width: 130%;
-  position: fixed;
-  z-index: 10;
+  /* position: fixed; */
+  z-index: 1;
+  position: absolute;
+  top: 0;
   
 }
 .navlinks{

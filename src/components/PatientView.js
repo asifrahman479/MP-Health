@@ -115,7 +115,7 @@ class PatientView extends Component {
   render(){
     return (  
       
-      <div style={{backgroundColor: '#E5E5E5'}}>
+      <div style={{backgroundColor: '#edf1f4'}}>
         {/* <Header />  */}
         <div className="sidenav">
           {PatientData.map((item, index) => {
