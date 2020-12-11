@@ -10,7 +10,7 @@ class Clinic(models.Model):
 
 class Doctor(models.Model):
     DoctorName = models.CharField(max_length = 96, blank=True)
-    ClinicID = models.ForeignKey(Clinic, on_delete=models.CASCADE)
+    ClinicID = models.ForeignKey(Clinic, related_name="clinic", on_delete=models.CASCADE)
     Email = models.TextField(blank = True)
     Phone = models.CharField(max_length = 12, blank = True)
     JobTitle= models.TextField(blank = True)
@@ -36,6 +36,10 @@ class Patient(models.Model):
         return f'{self.PatientName} {self.Email} {self.Phone}'
     def get_patient_appt(self):
         return Appointment.object.filter(PatientID = self)
+
+    def get_patient_name(pk):
+        return Patient.filter(PatientID = self).PatientName
+
 
 class DocAvailability(models.Model):
     # DoctorID = models.ForeignKey(Doctor, on_delete=models.CASCADE)
