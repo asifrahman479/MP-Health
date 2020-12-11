@@ -25,15 +25,15 @@ export default class DoctorView extends SampleBase {
     }
   }
 
-
-  onPopupOpen(args) {
-    if (args.type === 'QuickInfo') {
-      // let statusElement = args.element.querySelector("#EventType");
-      // statusElement.setAttribute("name", "EventType");
-      args.cancel = true;
-      // alert('You can use your customized popup here for quick info popup.');
-    }
-  } 
+ 
+  // onPopupOpen(args) {
+  //   if (args.type === 'QuickInfo') {
+  //     // let statusElement = args.element.querySelector("#EventType");
+  //     // statusElement.setAttribute("name", "EventType");
+  //     args.cancel = true;
+  //     // alert('You can use your customized popup here for quick info popup.');
+  //   }
+  // } 
   
   editorTemplate(props) {
     return props !== undefined ? (
@@ -50,6 +50,7 @@ export default class DoctorView extends SampleBase {
                 className="e-field e-input"
                 type="text"
                 name="Subject"
+                // value={Subject}
                 style={{ width: "100%" }}
               />
             </td>
@@ -106,6 +107,7 @@ export default class DoctorView extends SampleBase {
                   height: "60px !important",
                   resize: "vertical"
                 }}
+                // value={{Description}}
               />
             </td>
           </tr>
@@ -115,6 +117,11 @@ export default class DoctorView extends SampleBase {
       <div />
     );
   }
+  onEventRendered(args) {
+    var categoryColor = args.data.CategoryColor;
+    args.element.style.backgroundColor = categoryColor;
+    
+}
 
   async componentDidMount() {
     try {
@@ -168,7 +175,7 @@ export default class DoctorView extends SampleBase {
           </div>
           <div className="calender">
           
-            <ScheduleComponent hello={this.hello.bind(this)} editorTemplate={this.editorTemplate.bind(this)} popupOpen={this.onPopupOpen.bind(this)} style={{float: 'right', backgroundColor: 'E5E5E5', border: 'none', paddingTop: '1%' }} width = '80%' height = '100%' currentView = 'Week' eventSettings={{ dataSource: this.dataManger }}>
+            <ScheduleComponent editorTemplate={this.editorTemplate.bind(this)} popupOpen={this.onPopupOpen.bind(this)} style={{float: 'right', backgroundColor: 'E5E5E5', border: 'none', paddingTop: '1%' }} width = '80%' height = '100%' currentView = 'Week' eventSettings={{ dataSource: this.dataManger }}>
                 <Inject services = {[Day,Week, WorkWeek, Month, Agenda, DragAndDrop]}/>
               </ScheduleComponent>
           </div>

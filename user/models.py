@@ -47,16 +47,21 @@ class DocAvailability(models.Model):
     StartTime = models.DateTimeField(blank = True)
     EndTime = models.DateTimeField(blank = True)
     IsBlock = models.BooleanField(default = True)
+    Location = models.EmailField( blank = True , max_length=254)
     
     @classmethod
-    def create(cls, Subject, StartTime, EndTime, IsBlock):
-        appt = cls( Subject= Subject, StartTime = StartTime, EndTime=EndTime, IsBlock = IsBlock)
+    def create(cls, Subject, StartTime, EndTime, IsBlock, Location):
+        appt = cls( Subject= Subject, StartTime = StartTime, EndTime=EndTime, IsBlock = IsBlock, Location = Location)
         return appt
 
 
 colors = {
-    ("#1aaa55", 'Emergency'),
-    ("#ea7a57", 'Sick'),
+    ("#fe6140", 'Emergency'),
+    ("#f28e26", 'Sick'),
+    ("#46d5c5", 'Examination'),
+    ("#0facff", 'Telemedicine'),
+    ("#6665dd", 'Routine Check-Up')
+
 }
 
 class Appointment(models.Model):
@@ -67,6 +72,11 @@ class Appointment(models.Model):
     EndTime = models.DateTimeField(blank = True)
     CategoryColor = models.CharField(max_length=10, choices = colors, blank = True) 
     IsBlock = models.BooleanField(default = False)
+    Location = models.EmailField(blank = True, max_length=254)
 
+    @classmethod
+    def create(cls, Subject, StartTime, EndTime, IsBlock):
+        appt = cls( Subject= Subject, StartTime = StartTime, EndTime=EndTime, IsBlock = IsBlock)
+        return appt
     
     

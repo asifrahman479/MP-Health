@@ -53,6 +53,7 @@
     </style>
     <center>
     <h3>Create a new Appointment</h3>
+    <b><i> Make your appointment only 30 minutes</i></b>
     </center>
     <form method ="POST" novalidate> <!-- HTTP POST sends data to server-->
     {% csrf_token %}
@@ -90,6 +91,30 @@
       {% endif %}
 
       {% if form.Subject.help_text %}
+        <small class="form-text text-muted">Hello</small>
+      {% endif %}
+    </div>
+      <div class="form-group">
+      <h5> Email:</h5>
+    
+      {% if form.is_bound %}
+        {% if form.Location.errors %}
+        
+          {% render_field form.Location class="form-control is-invalid"%}
+          
+          {% for error in form.Location.errors %}
+            <div class="invalid-feedback">
+              {{ error }}
+            </div>
+          {% endfor %}
+        {% else %}
+          {% render_field form.Location class="form-control is-valid" %}
+        {% endif %}
+      {% else %}
+        {% render_field form.Location class="form-control"%}
+      {% endif %}
+
+      {% if form.Location.help_text %}
         <small class="form-text text-muted">Hello</small>
       {% endif %}
     </div>
@@ -137,6 +162,28 @@
 
       {% if form.EndTime.help_text %}
         <small class="form-text text-muted">{{ form.EndTime.help_text }}</small>
+      {% endif %}
+    </div>
+    <div class="form-group">
+      <h5> Type of Appointment:</h5>
+
+      {% if form.is_bound %}
+        {% if form.CategoryColor.errors %}
+          {% render_field form.CategoryColor class="form-control is-invalid"  %}
+          {% for error in form.CategoryColor.errors %}
+            <div class="invalid-feedback">
+              {{ error }}
+            </div>
+          {% endfor %}
+        {% else %}
+          {% render_field form.CategoryColor class="form-control is-valid" %}
+        {% endif %}
+      {% else %}
+        {% render_field form.CategoryColor class="form-control"%}
+      {% endif %}
+
+      {% if form.CategoryColor.help_text %}
+        <small class="form-text text-muted">{{ form.CategoryColor.help_text }}</small>
       {% endif %}
     </div>
  

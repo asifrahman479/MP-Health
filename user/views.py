@@ -2,11 +2,15 @@ from rest_framework import viewsets, permissions
 from . import models
 from . import serializers
 from rest_framework.decorators import api_view
-from .forms import CreateAppointment
+from .forms import CreateAppointment, CreateAvailability
 from django.views.generic import CreateView
-from .models import Appointment
+from .models import Appointment, DocAvailability
 from django.shortcuts import redirect
 from django.urls import reverse
+import datetime
+
+
+
 from django.views import View
 
 class DoctorViewSet(viewsets.ModelViewSet):
@@ -46,6 +50,18 @@ class ClinicViewSet(viewsets.ModelViewSet):
     queryset = models.Clinic.objects.all()
     serializer_class = serializers.ClinicSerializer
 
+class CreateAvailabilityView(CreateView):
+    model = DocAvailability
+    form_class = CreateAvailability
+    template_name = "setavailability.html"
+    queryset = models.DocAvailability.objects.all()
+    
+    def get_success_url(self):
+        appt = models.DocAvailability.objects.get( id = self.object.id)
+        obj = models.Appointment.create( Subject = appt.Subject, StartTime = appt.StartTime, EndTime = appt.EndTime, IsBlock = False)
+        obj.save()
+        return reverse('confirmation2')
+
 class CreateAppointmentView(CreateView):
     model = Appointment
     form_class = CreateAppointment
@@ -53,15 +69,48 @@ class CreateAppointmentView(CreateView):
     queryset = models.Appointment.objects.all()
 
     def get_success_url(self):
-        appt = models.Appointment.objects.get( id = self.object.id)
-        obj = models.DocAvailability.create( Subject = "NOT AVAILABLE", StartTime = appt.StartTime, EndTime = appt.EndTime, IsBlock = True)
-        obj.save()
-        return reverse('confirmation')
+        instance = models.Appointment.objects.last()
+        if ((instance.EndTime - instance.StartTime) == datetime.timedelta(minutes = 30)):
+            switch = True
+            length = len(models.Appointment.objects.all())
+            number = 0
+            for x in models.Appointment.objects.all():
+                number += 1
+                if(x.StartTime == self.object.StartTime and x.EndTime == self.object.EndTime):
+                    switch = False
+                    if(length == number):
+                        switch = True
+                    elif(switch == False):
+                        instance.delete()
+                        return reverse('error')
+
+            if switch == True:
+                appt = models.Appointment.objects.get( id = self.object.id)
+                obj = models.DocAvailability.create( Subject = "NOT AVAILABLE", StartTime = appt.StartTime, EndTime = appt.EndTime, IsBlock = True, Location = appt.Location)
+                obj.save()
+                return reverse('confirmation')
+        else:
+            instance.delete()
+            return reverse('error2')   
+    
+       
         
 class ConfirmationView(CreateView):
     model = Appointment
     form_class = CreateAppointment
     template_name = "confirmation.html"
+class ErrorView(CreateView):
+    model = Appointment
+    form_class = CreateAppointment
+    template_name = "error.html"
+class Error2View(CreateView):
+    model = Appointment
+    form_class = CreateAppointment
+    template_name = "error2.html"
+class Confirmation2View(CreateView):
+    model = Appointment
+    form_class = CreateAppointment
+    template_name = "confirmation2.html"
 
 # def appointment_list(request):
 #     if request.method == 'POST':
