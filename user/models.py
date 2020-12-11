@@ -10,7 +10,7 @@ class Clinic(models.Model):
 
 class Doctor(models.Model):
     DoctorName = models.CharField(max_length = 96, blank=True)
-    ClinicID = models.ForeignKey(Clinic, on_delete=models.CASCADE)
+    ClinicID = models.ForeignKey(Clinic, related_name="clinic", on_delete=models.CASCADE)
     Email = models.TextField(blank = True)
     Phone = models.CharField(max_length = 12, blank = True)
     JobTitle= models.TextField(blank = True)
@@ -42,20 +42,30 @@ class Patient(models.Model):
 
 
 class DocAvailability(models.Model):
-    DoctorID = models.ForeignKey(Doctor, on_delete=models.CASCADE)
-    StartTime = models.DateTimeField(blank = True)
-    EndTime = models.DateTimeField(blank = True)
-    IsFree = models.BooleanField(default = True)
-    IsReadonly = False
-
-
-class Appointment(models.Model):
-    PatientID = models.ForeignKey(Patient, blank = True, null = True, on_delete=models.CASCADE)
-    DoctorID = models.ForeignKey(Doctor, blank = True, null = True, on_delete=models.CASCADE)
+    # DoctorID = models.ForeignKey(Doctor, on_delete=models.CASCADE)
     Subject = models.CharField(max_length = 96, blank = True)
     StartTime = models.DateTimeField(blank = True)
     EndTime = models.DateTimeField(blank = True)
-    IsReadonly = True
+    IsBlock = models.BooleanField(default = True)
+    
+    @classmethod
+    def create(cls, Subject, StartTime, EndTime, IsBlock):
+        appt = cls( Subject= Subject, StartTime = StartTime, EndTime=EndTime, IsBlock = IsBlock)
+        return appt
+
+
+colors = {
+    ("#1aaa55", 'Emergency'),
+    ("#ea7a57", 'Sick'),
+}
+
+class Appointment(models.Model):
+    # PatientID = models.ForeignKey(Patient, blank = True, null = True, on_delete=models.CASCADE)
+    # DoctorID = models.ForeignKey(Doctor, blank = True, null = True, on_delete=models.CASCADE)
+    Subject = models.CharField(max_length = 96, blank = True)
+    StartTime = models.DateTimeField(blank = True)
+    EndTime = models.DateTimeField(blank = True)
+    CategoryColor = models.CharField(max_length=10, choices = colors, blank = True) 
     IsBlock = models.BooleanField(default = False)
 
     

@@ -1,5 +1,10 @@
 from rest_framework import serializers
 from .models import *
+from rest_framework_bulk import (
+    BulkListSerializer,
+    BulkSerializerMixin,
+    ListBulkCreateUpdateDestroyAPIView,
+)
 
 class DoctorSerializer(serializers.ModelSerializer):
     class Meta:

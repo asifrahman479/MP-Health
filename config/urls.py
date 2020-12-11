@@ -19,12 +19,13 @@ from django.views.generic import TemplateView
 from .router import router
 
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',TemplateView.as_view(template_name='index.html')),
-    # path('',include(user.urls)),
     path('api/',include(router.urls)),
     path('doctor/', TemplateView.as_view(template_name='index.html')),
     path('patient/', TemplateView.as_view(template_name='index.html')),
-    
+    path('create/', include('user.urls')),
+    path('auth/', include('authen.api.urls')),    
 ]

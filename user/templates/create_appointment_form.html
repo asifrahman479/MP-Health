@@ -1,0 +1,153 @@
+{% load widget_tweaks %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<html>
+    <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+        <title>Appointment Page</title>
+    </head>
+    
+    {% block content %}
+    <body id = "bg" style = "background-image: url('{% static "user/images/mphealthbg.jpg"%}') ";>
+    <style>
+    *{
+        font-family: "Montserrat", sans-serif;
+        
+    }
+    #bg{
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        width: 100%;
+        height: 100%;
+        background-color: 
+        
+        
+    }
+    </style>
+   
+    <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+    <style>
+     .modal-content{
+         margin-top: 13em;
+         margin-right: 10em;
+         right: 200px;
+         border: 2px;
+         -webkit-box-shadow: 5px 10px 15px grey;
+         padding: 2em;
+         
+    }
+    </style>
+    <center>
+    <h3>Create a new Appointment</h3>
+    </center>
+    <form method ="POST" novalidate> <!-- HTTP POST sends data to server-->
+    {% csrf_token %}
+        {% for hidden_field in form.hidden_fields %}
+    {{ hidden_field }}
+  {% endfor %}
+
+  {% if form.non_field_errors %}
+    <div class="alert alert-danger" role="alert">
+      {% for error in form.non_field_errors %}
+        {{ error }}
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  
+    <div class="form-group">
+      <h5> Name:</h5>
+    
+      {% if form.is_bound %}
+        {% if form.Subject.errors %}
+        
+          {% render_field form.Subject class="form-control is-invalid"%}
+          
+          {% for error in form.Subject.errors %}
+            <div class="invalid-feedback">
+              {{ error }}
+            </div>
+          {% endfor %}
+        {% else %}
+          {% render_field form.Subject class="form-control is-valid" %}
+        {% endif %}
+      {% else %}
+        {% render_field form.Subject class="form-control"%}
+      {% endif %}
+
+      {% if form.Subject.help_text %}
+        <small class="form-text text-muted">Hello</small>
+      {% endif %}
+    </div>
+        <div class="form-group">
+      <h5> Appointment Start Date and Time:</h5>
+      <i> (yyyy-mm-dd hh:mm)</i>
+
+      {% if form.is_bound %}
+        {% if form.StartTime.errors %}
+          {% render_field form.StartTime class="form-control is-invalid"  %}
+          {% for error in form.StartTime.errors %}
+            <div class="invalid-feedback">
+              {{ error }}
+            </div>
+          {% endfor %}
+        {% else %}
+          {% render_field form.StartTime class="form-control is-valid" %}
+        {% endif %}
+      {% else %}
+        {% render_field form.StartTime class="form-control"%}
+      {% endif %}
+
+      {% if form.StartTime.help_text %}
+        <small class="form-text text-muted">{{ form.StartTime.help_text }}</small>
+      {% endif %}
+    </div>
+        <div class="form-group">
+      <h5> Appointment End Date and Time:</h5>
+       <i> (yyyy-mm-dd hh:mm)</i>
+
+      {% if form.is_bound %}
+        {% if form.EndTime.errors %}
+          {% render_field form.EndTime class="form-control is-invalid"  %}
+          {% for error in form.EndTime.errors %}
+            <div class="invalid-feedback">
+              {{ error }}
+            </div>
+          {% endfor %}
+        {% else %}
+          {% render_field form.EndTime class="form-control is-valid" %}
+        {% endif %}
+      {% else %}
+        {% render_field form.EndTime class="form-control"%}
+      {% endif %}
+
+      {% if form.EndTime.help_text %}
+        <small class="form-text text-muted">{{ form.EndTime.help_text }}</small>
+      {% endif %}
+    </div>
+ 
+    <center>
+    
+    <button type="submit" class = "btn btn-danger"> Create Appointment</button>
+    <br/>
+</center>
+</form>
+    {% endblock %}
+    </body>
+</html>
+
+
