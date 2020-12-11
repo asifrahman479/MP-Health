@@ -1,41 +1,42 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import DoctorView from "./DoctorView";
-import PatientView from "./PatientView";
+import { faUsers, faUserMd } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const routes = [
-  {
-    title: "Dashboard",
-    path: "/patient",
-    icon: <h1>D</h1>,
-    sub: []
-  },
-  {
-    title: "Appointments",
-    path: "/home",
-    icon: <h1>A </h1>,
-    sub: [
-      {
-        name: "day",
-        path: "/"
-      },
-      {
-        name: "week",
-        path: "/"
-      },
-      {
-        name: "month",
-        path: "/"
-      }
-    ]
-  },
-  {
-    title: "Doctor",
-    path: "/doctor",
-    icon: <h1>D</h1>,
-    sub: []
-  }
-];
+// const routes = [
+//   {
+//     title: "Dashboard",
+//     path: "/patient",
+//     icon: <h1>D</h1>,
+//     sub: []
+//   },
+//   {
+//     title: "Appointments",
+//     path: "/home",
+//     icon: <h1>A </h1>,
+//     sub: [
+//       {
+//         name: "day",
+//         path: "/"
+//       },
+//       {
+//         name: "week",
+//         path: "/"
+//       },
+//       {
+//         name: "month",
+//         path: "/"
+//       }
+//     ]
+//   },
+//   {
+//     title: "Doctor",
+//     path: "/doctor",
+//     icon: <h1>D</h1>,
+//     sub: []
+//   }
+// ];
+
 export default class Sidebar extends Component {
   render() {
     return (
@@ -43,7 +44,7 @@ export default class Sidebar extends Component {
         <div style={{ display: "flex" }}>
           <ul style={{ listStyleType: "none", padding: "0" }}>
             <li>
-              <Link to="/patient">Dashboard</Link>
+              <Link to="/patient">Patient</Link>
             </li>
             <li>
               <Link to="/home">Appointments</Link>

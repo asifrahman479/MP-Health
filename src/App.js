@@ -1,8 +1,6 @@
 import './App.css';
-import ReactCalender from './components/ReactCalender';
 import React, {Component} from 'react';
-import Header from './components/headerfiles/header';
-import{Inject,ScheduleComponent, Day,Week, WorkWeek, Month, Agenda, EventSettingsModel} from '@syncfusion/ej2-react-schedule';
+// import Header from './components/headerfiles/header';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import DoctorView from './components/DoctorView';
 import PatientView from './components/PatientView';

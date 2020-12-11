@@ -1,5 +1,4 @@
 import './Sidebar.css';
-
 import React, {Component} from 'react';
 import Header from './headerfiles/header';
 import{Inject,ScheduleComponent, Day,Week, WorkWeek, Month, Agenda} from '@syncfusion/ej2-react-schedule';
@@ -123,7 +122,8 @@ class PatientView extends Component {
             return (
               <li key={index} 
                   className={item.cName}>
-                    <Link to={item.path}>{item.title}</Link>
+                    <Link to={item.path}>{item.icon}<span>{item.title}</span>
+                    </Link>
               </li>
               )
           })
@@ -132,7 +132,7 @@ class PatientView extends Component {
         
         </div> 
         <div className="calender">
-        <ScheduleComponent  editorTemplate={this.editorTemplate.bind(this)} popupOpen={this.onPopupOpen.bind(this)} style={{float: 'right', backgroundColor: 'E5E5E5', border: 'none', paddingTop: '5%' }} width = '80%' height = '100%' currentView = 'Week' eventSettings={{ dataSource: this.dataManger }}>
+        <ScheduleComponent  editorTemplate={this.editorTemplate.bind(this)} popupOpen={this.onPopupOpen.bind(this)} style={{float: 'right', backgroundColor: 'E5E5E5', border: 'none', paddingTop: '5%' }} width = '81%' height = '100%' currentView = 'Week' eventSettings={{ dataSource: this.dataManger }}>
                 <Inject services = {[Day,Week, WorkWeek, Month, Agenda]}/>
               </ScheduleComponent>
         </div>

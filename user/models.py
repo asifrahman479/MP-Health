@@ -37,6 +37,10 @@ class Patient(models.Model):
     def get_patient_appt(self):
         return Appointment.object.filter(PatientID = self)
 
+    def get_patient_name(pk):
+        return Patient.filter(PatientID = self).PatientName
+
+
 class DocAvailability(models.Model):
     # DoctorID = models.ForeignKey(Doctor, on_delete=models.CASCADE)
     Subject = models.CharField(max_length = 96, blank = True)
