@@ -7,6 +7,8 @@ import { SampleBase } from "./sample-base";
 import { DataManager, WebApiAdaptor } from "@syncfusion/ej2-data";
 import { DateTimePickerComponent } from "@syncfusion/ej2-react-calendars";
 import { DropDownListComponent } from "@syncfusion/ej2-react-dropdowns";
+import axios from "axios";
+
 
 export default class DoctorView extends SampleBase {
   constructor() {
@@ -21,11 +23,7 @@ export default class DoctorView extends SampleBase {
     });
 
     this.state = {
-      Subject: " ",
-      eventType: " ",
-      sTime: " ",
-      eTime: " ",
-      Description: " "
+      appointmentsList: []
     }
   }
 
@@ -118,6 +116,24 @@ export default class DoctorView extends SampleBase {
       <div />
     );
   }
+
+  async componentDidMount() {
+    try {
+      const res = await fetch('http://127.0.0.1:8000/api/Appointment/'); // fetching the data from api, before the page loaded
+        const appointmentsList = await res.json();
+        this.setState({
+          appointmentsList
+      });
+      console.log(appointmentsList);
+
+    } catch {
+      console.log("hello");
+    }
+      
+  }
+
+
+
   render(){
     return (        
       <div style={{backgroundColor: '#E5E5E5'}}>
@@ -127,11 +143,24 @@ export default class DoctorView extends SampleBase {
             return (
               <li key={index} 
                   className={item.cName}>
-                    <Link to={item.path}>{item.title}</Link>
+                    <Link to={item.path}>{item.icon}<span>{item.title}</span>
+                      </Link>
               </li>
               )
           })
           }
+
+             
+            {this.state.appointmentsList.map(item => (
+               (
+                <li className={item.cName}>
+                      <h3>- {item.Subject}</h3>
+                </li>
+              )
+              
+            ))}
+
+          
           </div>
         
           <div className="calender">

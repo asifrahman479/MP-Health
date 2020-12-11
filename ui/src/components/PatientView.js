@@ -1,5 +1,4 @@
 import './Sidebar.css';
-
 import React, {Component} from 'react';
 import Header from './headerfiles/header';
 import{Inject,ScheduleComponent, Day,Week, WorkWeek, Month, Agenda} from '@syncfusion/ej2-react-schedule';
@@ -16,7 +15,6 @@ export default class PatientView extends Component {
     this.dataManger = new DataManager({
       url: "http://127.0.0.1:8000/api/Appointment/?format=json",
       crudUrl: "http://127.0.0.1:8000/api/Appointment/",
-        // "https://ej2services.syncfusion.com/production/web-services/api/Schedule",
       adaptor: new WebApiAdaptor(),
       crossDomain: true,
       IsBlock: true
@@ -120,7 +118,8 @@ export default class PatientView extends Component {
             return (
               <li key={index} 
                   className={item.cName}>
-                    <Link to={item.path}>{item.title}</Link>
+                    <Link to={item.path}>{item.icon}<span>{item.title}</span>
+                    </Link>
               </li>
               )
           })
@@ -129,7 +128,7 @@ export default class PatientView extends Component {
         
         </div> 
         <div className="calender">
-        <ScheduleComponent  editorTemplate={this.editorTemplate.bind(this)} popupOpen={this.onPopupOpen.bind(this)} style={{float: 'right', backgroundColor: 'E5E5E5', border: 'none', paddingTop: '5%' }} width = '80%' height = '100%' currentView = 'Week' eventSettings={{ dataSource: this.dataManger }}>
+        <ScheduleComponent  editorTemplate={this.editorTemplate.bind(this)} popupOpen={this.onPopupOpen.bind(this)} style={{float: 'right', backgroundColor: 'E5E5E5', border: 'none', paddingTop: '5%' }} width = '81%' height = '100%' currentView = 'Week' eventSettings={{ dataSource: this.dataManger }}>
                 <Inject services = {[Day,Week, WorkWeek, Month, Agenda]}/>
               </ScheduleComponent>
         </div>
