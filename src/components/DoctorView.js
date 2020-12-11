@@ -175,7 +175,7 @@ export default class DoctorView extends SampleBase {
           </div>
           <div className="calender">
           
-            <ScheduleComponent editorTemplate={this.editorTemplate.bind(this)} popupOpen={this.onPopupOpen.bind(this)} style={{float: 'right', backgroundColor: 'E5E5E5', border: 'none', paddingTop: '1%' }} width = '80%' height = '100%' currentView = 'Week' eventSettings={{ dataSource: this.dataManger }}>
+            <ScheduleComponent editorTemplate={this.editorTemplate.bind(this)} style={{float: 'right', backgroundColor: 'E5E5E5', border: 'none', paddingTop: '1%' }} width = '80%' height = '100%' currentView = 'Week' eventSettings={{ dataSource: this.dataManger }}>
                 <Inject services = {[Day,Week, WorkWeek, Month, Agenda, DragAndDrop]}/>
               </ScheduleComponent>
           </div>
