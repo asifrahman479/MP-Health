@@ -27,7 +27,8 @@ class PatientView extends Component {
       // let statusElement = args.element.querySelector("#EventType");
       // statusElement.setAttribute("name", "EventType");
       args.cancel = true;
-      this.props.history.replace("/create/create_appointment");
+      window.open("/create/create_appointment");
+      // this.props.history.replace("");
       window.location.reload();
      
     }
@@ -115,7 +116,7 @@ class PatientView extends Component {
   render(){
     return (  
       
-      <div style={{backgroundColor: '#E5E5E5'}}>
+      <div style={{backgroundColor: '#edf1f4'}}>
         {/* <Header />  */}
         <div className="sidenav">
           {PatientData.map((item, index) => {

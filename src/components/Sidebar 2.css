@@ -5,14 +5,14 @@
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: #E5E5E5;
+    background-color: #edf1f4;
     overflow-x: hidden;
     padding-top: 200px;
     list-style-type: none;
   }
 
   .calender {
-    background-color: #E5E5E5;
+    background-color: #edf1f4;
   }
   
   .sidenav a {
