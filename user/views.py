@@ -18,12 +18,12 @@ class DoctorViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.DoctorSerializer
 
 class AppointmentViewSet(viewsets.ModelViewSet):
-    #queryset = models.Appointment.objects.all()
+    queryset = models.Appointment.objects.all()
     serializer_class = serializers.AppointmentSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
 
-    def get_queryset(self):
-        return self.request.user.appointment.all()
+    # def get_queryset(self):
+    #     return self.request.user.appointment.all()
 
     # def perform_create(self, serializer):
     #     serializer.save(DoctorID=self.request.user)
