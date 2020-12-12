@@ -15,10 +15,11 @@ class App extends Component {
       <Router>
         <div className="App">
           <Switch>
-            <Route path='/' exact component={Home} />
+            <Route path='/' exact component={PatientView} />
             <Route path='/doctor' component={DoctorView} />
             <Route path='/patient' component={PatientView} />
             <Route path='/temp' component={TempDoctor} />
+            <Route path='/signup' component={Home} />
           </Switch>
         </div>
 
@@ -31,11 +32,6 @@ class App extends Component {
 const Home = () => (
   <div>
     <Login/>
-    <Link to="/doctor">
-  <button renderAs="button">
-    <span>Doctor</span>
-  </button>
-</Link>
   </div>
 )
 

@@ -33,7 +33,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'user',
     'knox',
-    'authen'
+    # 'authen'
 ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -47,9 +47,9 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware'
 ]
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'knox.auth.TokenAuthentication',
-    ),
+    # 'DEFAULT_AUTHENTICATION_CLASSES': (
+    #     'knox.auth.TokenAuthentication',
+    # ),
 }
 ROOT_URLCONF = 'config.urls'
 TEMPLATES = [

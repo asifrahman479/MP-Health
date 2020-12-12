@@ -13,8 +13,8 @@ export default class DoctorView extends SampleBase {
   constructor() {
     super(...arguments);
     this.dataManger = new DataManager({
-      url: "http://mphealth.herokuapp.com/api/Appointment/",
-      crudUrl: "http://mphealth.herokuapp.com/api/Appointment/",
+      url: "http://127.0.0.1:8000/api/Appointment/",
+      crudUrl: "http://127.0.0.1:8000/api/Appointment/",
         // "https://ej2services.syncfusion.com/production/web-services/api/Schedule",
       adaptor: new WebApiAdaptor(),
       crossDomain: true
@@ -126,7 +126,7 @@ export default class DoctorView extends SampleBase {
   async componentDidMount() {
     try {
       // fetching the data from api, before the page loaded
-      const res = await fetch('http://mphealth.herokuapp.com/api/Appointment'); 
+      const res = await fetch('http://127.0.0.1:8000/api/Appointment'); 
         const appointmentsList = await res.json();
         this.setState({
           appointmentsList
@@ -168,6 +168,9 @@ export default class DoctorView extends SampleBase {
                 </li>
               )
             ))}
+            <div class= "legend">
+              <img src ="/static/legend2.png" alt = "logo" width = "200"></img>
+            </div>
 
           </div>
           <div className="hello">
@@ -175,11 +178,13 @@ export default class DoctorView extends SampleBase {
           </div>
           <div className="calender">
           
-            <ScheduleComponent editorTemplate={this.editorTemplate.bind(this)} popupOpen={this.onPopupOpen.bind(this)} style={{float: 'right', backgroundColor: 'E5E5E5', border: 'none', paddingTop: '1%' }} width = '80%' height = '100%' currentView = 'Week' eventSettings={{ dataSource: this.dataManger }}>
+            <ScheduleComponent editorTemplate={this.editorTemplate.bind(this)} style={{float: 'right', backgroundColor: 'E5E5E5', border: 'none', paddingTop: '1%' }} width = '80%' height = '100%' currentView = 'Week' eventSettings={{ dataSource: this.dataManger }} eventRendered={this.onEventRendered.bind(this)}>
                 <Inject services = {[Day,Week, WorkWeek, Month, Agenda, DragAndDrop]}/>
               </ScheduleComponent>
           </div>
+
       </div>
+      
     );
   }
 }
