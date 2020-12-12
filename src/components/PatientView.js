@@ -14,7 +14,7 @@ class PatientView extends Component {
   constructor() {
     super(...arguments);
     this.dataManger = new DataManager({
-      url: "https://mphealth.herokuapp.com/api/DocAvailability",
+      url: "http://127.0.0.1:8000/api/DocAvailability",
       crudUrl: "https://mphealth.herokuapp.com/admin/user/appointment/add/",
         // "https://ej2services.syncfusion.com/production/web-services/api/Schedule",
       adaptor: new WebApiAdaptor(),
@@ -132,6 +132,7 @@ class PatientView extends Component {
         
         </div> 
         <div className="calender">
+        <Header />
         <ScheduleComponent  editorTemplate={this.editorTemplate.bind(this)} popupOpen={this.onPopupOpen.bind(this)} style={{float: 'right', backgroundColor: 'E5E5E5', border: 'none', paddingTop: '5%' }} width = '81%' height = '100%' currentView = 'Week' eventSettings={{ dataSource: this.dataManger }}>
                 <Inject services = {[Day,Week, WorkWeek, Month, Agenda]}/>
               </ScheduleComponent>

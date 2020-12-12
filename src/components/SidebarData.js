@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { faUsers, faUserMd, faClock, faCalendar } from "@fortawesome/free-solid-svg-icons";
+import { faUsers, faUserMd, faClock, faCalendar, faCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const PatientData = [
@@ -43,7 +43,7 @@ export const PatientData = [
 export const DoctorData = [
   {
     title: "Set Availibility",
-    path: "/",
+    path: "/create/setavailability",
     icon: <FontAwesomeIcon icon={faClock} />,
     sub: [],
     cName: 'nav-text'
@@ -74,5 +74,12 @@ export const DoctorData = [
     icon: <FontAwesomeIcon icon={faUsers} />,
     sub: [],
     cName: 'nav-text'
+  },
+  
+];
+
+export const colorData = [
+  {
+    code: <FontAwesomeIcon icon = {faCircle}/>,
   }
 ];

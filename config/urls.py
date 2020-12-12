@@ -27,5 +27,5 @@ urlpatterns = [
     path('doctor/', TemplateView.as_view(template_name='index.html')),
     path('patient/', TemplateView.as_view(template_name='index.html')),
     path('create/', include('user.urls')),
-    path('auth/', include('authen.api.urls')),    
+    # path('auth/', include('authen.api.urls')),    
 ]
